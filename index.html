@@ -16,7 +16,6 @@
             --text-muted: #475569;
             --text-light: #64748b;
             
-            /* Cambio de color para la oferta (naranja) */
             --supply-color: #ea580c; 
             --supply-light: rgba(234, 88, 12, 0.15);
             
@@ -82,12 +81,12 @@
         <div class="academic-box">
             <div class="academic-tag">Material Académico</div>
             <div class="academic-course">Análisis Económico de los Impuestos</div>
-            <div class="academic-program">Maestria en Tributación y Política Fiscal &bull; <span>2026-2</span></div>
-<div class="author">ge.lopezgonzales@gmail.com</div>
+            <div class="academic-program">Maestría en Tributación y Política Fiscal &bull; <span>2026-2</span></div>
+            <div class="author">ge.lopezgonzales@gmail.com</div>
         </div>
         <div class="header-title-container">
             <h1>Elasticidad de la <span>Oferta</span></h1>
-            <p>Relación entre variaciones de precio, la cantidad producida y los ingresos</p>
+            <p>Relación entre variaciones de precio, la cantidad producida y el ingreso total</p>
         </div>
     </header>
 
@@ -98,7 +97,7 @@
                 <div class="section-header">Sensibilidad del Productor</div>
                 <div class="control-group">
                     <div class="control-header">
-                        <label>Coeficiente de Elasticidad (Es)</label>
+                        <label>Elasticidad de la Oferta (EO)</label>
                         <span class="val-badge" id="val-elasticity">1.0</span>
                     </div>
                     <input type="range" id="elasticity" min="0" max="3" step="0.1" value="1.0">
@@ -106,21 +105,21 @@
                         <span>Inelástica (0)</span>
                         <span>Elástica (>1)</span>
                     </div>
-                    <span class="slider-desc">Se consideran valores absolutos. Mide qué tan sensible es la cantidad ofrecida ante un cambio en el precio. Pivota sobre un anclaje inicial ($P_0, Q_0$).</span>
+                    <span class="slider-desc">Se consideran valores absolutos. Mide qué tan sensible es la cantidad ofrecida ante un cambio en el precio. Pivota sobre un anclaje inicial (P₀, Q₀).</span>
                 </div>
             </div>
 
             <div>
-                <div class="section-header">Decisión de Mercado</div>
+                <div class="section-header">Precio de Mercado</div>
                 <div class="control-group">
                     <div class="control-header">
-                        <label>Nuevo Precio (P1)</label>
-                        <span class="val-badge" id="val-price">$12.00</span>
+                        <label>Nuevo Precio (P₁)</label>
+                        <span class="val-badge" id="val-price">S/ 12.00</span>
                     </div>
                     <input type="range" id="price" min="4" max="16" step="0.5" value="12">
                     <div class="slider-labels">
                         <span>Baja el precio</span>
-                        <span>Precio Base ($10)</span>
+                        <span>Precio Base (S/ 10)</span>
                         <span>Sube el precio</span>
                     </div>
                     <span class="slider-desc">Simula un cambio de precio para observar su impacto en la cantidad producida y en los ingresos.</span>
@@ -137,9 +136,9 @@
         <div class="visual-card">
             <div class="legend">
                 <div class="legend-item"><div class="dot" style="background: var(--supply-color); height:3px;" id="leg-curve"></div> Curva de Oferta</div>
-                <div class="legend-item"><div class="dot" style="background: #94a3b8; border-radius: 50%;"></div> Punto Ancla (P0)</div>
-                <div class="legend-item"><div class="dot" style="background: var(--supply-color); border-radius: 50%;" id="leg-pt"></div> Nuevo Punto (P1)</div>
-                <div class="legend-item"><div class="dot" style="background: var(--supply-light); border: 1px solid var(--supply-color);" id="leg-rev"></div> Ingreso (P×Q)</div>
+                <div class="legend-item"><div class="dot" style="background: #94a3b8; border-radius: 50%;"></div> Punto Ancla (P₀)</div>
+                <div class="legend-item"><div class="dot" style="background: var(--supply-color); border-radius: 50%;" id="leg-pt"></div> Nuevo Punto (P₁)</div>
+                <div class="legend-item"><div class="dot" style="background: var(--supply-light); border: 1px solid var(--supply-color);" id="leg-rev"></div> Ingreso Total (P×Q)</div>
             </div>
 
             <div class="canvas-container" id="canvasBox">
@@ -148,7 +147,7 @@
 
             <div class="stats-grid">
                 <div class="stat-box">
-                    <div class="stat-title">Elasticidad ($E_s$)</div>
+                    <div class="stat-title">Elasticidad (Eo)</div>
                     <div class="stat-val" id="stat-e">1.00</div>
                     <div class="badge-type" id="stat-type">Unitaria</div>
                 </div>
@@ -159,8 +158,8 @@
                 </div>
                 <div class="stat-box">
                     <div class="stat-title" id="rev-title">Ingreso Total</div>
-                    <div class="stat-val" id="stat-rev">$1440.00</div>
-                    <div class="stat-sub" id="stat-rev-change" style="color: #64748b;">Base: $1000.00</div>
+                    <div class="stat-val" id="stat-rev">S/ 1440.00</div>
+                    <div class="stat-sub" id="stat-rev-change" style="color: #64748b;">Base: S/ 1000.00</div>
                 </div>
             </div>
         </div>
@@ -197,13 +196,13 @@
 
         function update() {
             document.getElementById('val-elasticity').textContent = parseFloat(elasticityInput.value).toFixed(1);
-            document.getElementById('val-price').textContent = `$${parseFloat(priceInput.value).toFixed(2)}`;
+            document.getElementById('val-price').textContent = `S/ ${parseFloat(priceInput.value).toFixed(2)}`;
             draw(container.offsetWidth, container.offsetHeight);
         }
 
         function draw(w, h) {
             ctx.clearRect(0, 0, w, h);
-            const padL = 55, padR = 30, padT = 30, padB = 40;
+            const padL = 60, padR = 30, padT = 30, padB = 40;
             const gW = w - padL - padR;
             const gH = h - padT - padB;
 
@@ -224,13 +223,13 @@
             
             ctx.font = '10px monospace';
             for (let q = 50; q <= 200; q += 50) { ctx.textAlign = 'center'; ctx.fillText(q, toX(q), padT + gH + 15); }
-            for (let p = 5; p <= 20; p += 5) { ctx.textAlign = 'right'; ctx.fillText('$' + p, padL - 8, toY(p) + 4); }
+            for (let p = 5; p <= 20; p += 5) { ctx.textAlign = 'right'; ctx.fillText('S/ ' + p, padL - 8, toY(p) + 4); }
 
             // --- 2. MATEMÁTICAS DE ELASTICIDAD (OFERTA) ---
             const E = parseFloat(elasticityInput.value);
             const P1 = parseFloat(priceInput.value);
             
-            // Fórmula Oferta: Q1 = Q0 + b(P1 - P0). Donde b = E * (Q0/P0)
+            // Fórmula Oferta: Q₁ = Q₀ + b(P₁ - P₀). Donde b = E * (Q₀/P₀)
             const b = 10 * E;
             let Q1 = BASE_Q + b * (P1 - BASE_P);
             Q1 = Math.max(0, Q1); // No puede haber cantidad negativa
@@ -263,7 +262,7 @@
                 ctx.moveTo(toX(BASE_Q), toY(0));
                 ctx.lineTo(toX(BASE_Q), toY(maxP));
             } else {
-                // Intercepto en el eje P: P = P0 - (Q0 / b)
+                // Intercepto en el eje P: P = P₀ - (Q₀ / b)
                 const pIntercept = BASE_P - (BASE_Q / b);
                 const qAtMaxP = BASE_Q + b * (maxP - BASE_P);
                 ctx.moveTo(toX(0), toY(pIntercept));
@@ -329,11 +328,11 @@
             document.getElementById('stat-dp').innerHTML = formatPct(pctP);
             document.getElementById('stat-dq').innerHTML = formatPct(pctQ);
 
-            document.getElementById('stat-rev').textContent = `$${REV.toFixed(2)}`;
+            document.getElementById('stat-rev').textContent = `S/ ${REV.toFixed(2)}`;
             
-            let revText = `Base: $${BASE_REV.toFixed(2)}`;
-            if (revDiff > 0) revText = `↑ Aumentó en $${Math.abs(revDiff).toFixed(2)}`;
-            else if (revDiff < 0) revText = `↓ Cayó en $${Math.abs(revDiff).toFixed(2)}`;
+            let revText = `Base: S/ ${BASE_REV.toFixed(2)}`;
+            if (revDiff > 0) revText = `↑ Aumentó en S/ ${Math.abs(revDiff).toFixed(2)}`;
+            else if (revDiff < 0) revText = `↓ Cayó en S/ ${Math.abs(revDiff).toFixed(2)}`;
             else revText = `↔ Sin cambios`;
             
             const statRevSub = document.getElementById('stat-rev-change');

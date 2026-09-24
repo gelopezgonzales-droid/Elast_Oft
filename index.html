@@ -33,7 +33,7 @@
         .academic-box { background: var(--surface-card); border: 1px solid var(--border-strong); border-left: 4px solid var(--supply-color); border-radius: 8px; padding: 0.65rem 1rem; box-shadow: var(--shadow-sm); min-width: 320px; }
         .academic-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--text-light); }
         .academic-course { font-size: 0.88rem; font-weight: 700; margin-top: 2px;}
-        .academic-program { font-size: 0.74rem; color: var(--text-muted); font-weight: 500; }
+        .academic-program, .author { font-size: 0.74rem; color: var(--text-muted); font-weight: 500; }
         .header-title-container { text-align: right; }
         .header-title-container h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
         .header-title-container h1 span { color: var(--supply-color); }
@@ -83,6 +83,7 @@
             <div class="academic-tag">Material Académico</div>
             <div class="academic-course">Análisis Económico de los Impuestos</div>
             <div class="academic-program">Maestria en Tributación y Política Fiscal &bull; <span>2026-2</span></div>
+<div class="author">ge.lopezgonzales@gmail.com</div>
         </div>
         <div class="header-title-container">
             <h1>Elasticidad de la <span>Oferta</span></h1>
@@ -102,10 +103,10 @@
                     </div>
                     <input type="range" id="elasticity" min="0" max="3" step="0.1" value="1.0">
                     <div class="slider-labels">
-                        <span>Perfect. Inelástica (0)</span>
+                        <span>Inelástica (0)</span>
                         <span>Elástica (>1)</span>
                     </div>
-                    <span class="slider-desc">Mide qué tan sensible es la cantidad ofrecida ante un cambio en el precio. Pivota sobre un anclaje inicial ($P_0, Q_0$).</span>
+                    <span class="slider-desc">Se consideran valores absolutos. Mide qué tan sensible es la cantidad ofrecida ante un cambio en el precio. Pivota sobre un anclaje inicial ($P_0, Q_0$).</span>
                 </div>
             </div>
 
@@ -113,14 +114,14 @@
                 <div class="section-header">Decisión de Mercado</div>
                 <div class="control-group">
                     <div class="control-header">
-                        <label>Nuevo Precio ($P_1$)</label>
+                        <label>Nuevo Precio (P1)</label>
                         <span class="val-badge" id="val-price">$12.00</span>
                     </div>
                     <input type="range" id="price" min="4" max="16" step="0.5" value="12">
                     <div class="slider-labels">
-                        <span>Baja P</span>
+                        <span>Baja el precio</span>
                         <span>Precio Base ($10)</span>
-                        <span>Sube P</span>
+                        <span>Sube el precio</span>
                     </div>
                     <span class="slider-desc">Simula un cambio de precio para observar su impacto en la cantidad producida y en los ingresos.</span>
                 </div>
